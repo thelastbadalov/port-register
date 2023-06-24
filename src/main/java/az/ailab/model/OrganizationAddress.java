@@ -5,8 +5,11 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-public class OrganizationAddress {
+public class OrganizationAddress  {
 
+    @Id
+    @GeneratedValue
+    private Long id;
     @ManyToOne
     @JoinColumn(name = "organization_id",nullable = false)
     private Organization organization;

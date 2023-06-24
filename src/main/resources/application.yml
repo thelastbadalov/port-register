@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/port
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+app:
+
+  jwt-authentication-token-expires-minutes: 1
+
+  secret-key: SGVsbG8gZnJvbSBQdWJsaWMgc2lkZSBvZiBhaWxhYiBhdXRo

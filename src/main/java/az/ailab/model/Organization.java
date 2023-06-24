@@ -1,16 +1,18 @@
 package az.ailab.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
-public class Organization {
+@Getter
+@Setter
+public class Organization extends BaseEntity {
     @Id
     @GeneratedValue
-    private UUID id;
+    private Long id;
 
     @Column(name = "organization_code")
     private String organizationCode;
@@ -27,21 +29,10 @@ public class Organization {
     @Column(name = "organization_phone_number")
     private String organizationPhoneNumber;
 
-    @Column(name = "active")
-    private Boolean active;
+    @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL)
+    private List<GeneralUser> generalUsers;
 
-    @Column(name = "created_by")
-    private String createdBy;
-
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
-
-    @Column(name = "modified_at")
-    private LocalDateTime modifiedAt;
-
-    @Column(name = "modified_by")
-    private String modifiedBy;
-
-    @OneToMany(mappedBy = "organization")
+    @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL)
     private List<OrganizationAddress> addresses;
+
 }

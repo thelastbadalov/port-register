@@ -1,8 +1,29 @@
 package az.ailab.controller;
 
-import org.springframework.stereotype.Controller;
+import az.ailab.dto.GenericResponse;
+import az.ailab.dto.OrganizationRegisterRequestDto;
+import az.ailab.service.OrganizationService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequiredArgsConstructor
+@RequestMapping("/v1/organization/")
 public class OrganizationController {
+
+    private final OrganizationService organizationService;
+
+    @PostMapping
+    public GenericResponse<Void> register(
+            @Valid @RequestBody OrganizationRegisterRequestDto organizationRegisterRequestDto,
+            HttpServletRequest servletRequest
+    ) {
+        organizationService.register(organizationRegisterRequestDto, servletRequest);
+        return GenericResponse.success("SUCCESS");
+    }
 }
