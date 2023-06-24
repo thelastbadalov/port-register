@@ -16,6 +16,7 @@ import az.ailab.repository.OrganizationAddressRepository;
 import az.ailab.repository.OrganizationRepository;
 import az.ailab.util.RegisterValidator;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -31,9 +32,10 @@ public class OrganizationService {
     private final RegisterValidator registerValidator;
     private final OrganizationAddressService organizationAddressService;
     private final AddressTypeRepository addressTypeRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public GenericResponse<Void> register(CommonRegisterRequestDto commonRegisterRequestDto){
-        
+
         Organization organization =
                 organizationMapper.mapToEntity(commonRegisterRequestDto.getOrganizationRegisterRequestDto());
 
@@ -41,6 +43,7 @@ public class OrganizationService {
 
         GeneralUser generalUser =
                 generalUserMapper.mapToEntity(commonRegisterRequestDto.getUserRegistrationRequestDto());
+        generalUser.setPassword(passwordEncoder.encode(commonRegisterRequestDto.getUserRegistrationRequestDto().getPassword()));
 
         OrganizationAddress organizationAddress =
                 organizationAddressMapper.mapToEntity(commonRegisterRequestDto.getOrganizationAddressRegisterRequestDto());

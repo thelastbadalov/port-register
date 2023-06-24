@@ -3,6 +3,7 @@ package az.ailab.service;
 import az.ailab.dto.GeneralUserLoginRequestDto;
 import az.ailab.dto.GeneralUserRegistrationRequestDto;
 import az.ailab.dto.GenericResponse;
+import az.ailab.exception.UserNotFoundException;
 import az.ailab.exception.WrongPasswordException;
 import az.ailab.mapstruct.GeneralUserMapper;
 import az.ailab.model.GeneralUser;
@@ -26,9 +27,9 @@ public class GeneralUserService {
 
     public GenericResponse<String> login(GeneralUserLoginRequestDto generalUserLoginRequestDto) {
         GeneralUser user = generalUserRepository.findByEmail(generalUserLoginRequestDto.getEmail())
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-        if (!passwordEncoder.matches(generalUserLoginRequestDto.getPassword(), user.getPassword())) {
-            throw new WrongPasswordException("Password wrong exception");
+                .orElseThrow(() -> new UserNotFoundException("User not found"));
+        if (!(passwordEncoder.matches(generalUserLoginRequestDto.getPassword(), user.getPassword()))) {
+            throw new WrongPasswordException("password or email is not correct");
         }
         String jwt = jwtService.generateToken(user);
         return GenericResponse.success(jwt, "SUCCESS");

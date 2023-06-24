@@ -1,6 +1,6 @@
 package az.ailab.exception;
 
-public class OrganizationOrUserAlreadyExists extends RuntimeException{
+public class OrganizationOrUserAlreadyExists extends BadRequestException{
     public OrganizationOrUserAlreadyExists() {
     }
 
