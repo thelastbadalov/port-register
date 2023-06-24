@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
-public interface OrganizationAddressRepository extends JpaRepository<OrganizationAddress, UUID> {
+public interface OrganizationAddressRepository extends JpaRepository<OrganizationAddress, Long> {
 }
