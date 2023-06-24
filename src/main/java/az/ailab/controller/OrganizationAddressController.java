@@ -3,6 +3,7 @@ package az.ailab.controller;
 import az.ailab.dto.GenericResponse;
 import az.ailab.dto.OrganizationAddressRegisterRequestDto;
 import az.ailab.service.OrganizationAddressService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,8 +20,8 @@ public class OrganizationAddressController {
 
     @PostMapping("/register")
     public GenericResponse<Void> register(@Valid @RequestBody OrganizationAddressRegisterRequestDto
-                                                      organizationAddressRegisterRequestDto){
-       return organizationAddressService.register(organizationAddressRegisterRequestDto);
+                                                      organizationAddressRegisterRequestDto, HttpServletRequest request){
+       return organizationAddressService.register(organizationAddressRegisterRequestDto,request);
     }
 
 
