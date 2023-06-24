@@ -6,4 +6,10 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
+
+app:
+
+  jwt-authentication-token-expires-minutes: 1
+
+  secret-key: SGVsbG8gZnJvbSBQdWJsaWMgc2lkZSBvZiBhaWxhYiBhdXRo

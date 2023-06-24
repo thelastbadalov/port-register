@@ -2,11 +2,13 @@ package az.ailab.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
-@Data
 @MappedSuperclass
+@Getter
+@Setter
 public class BaseEntity {
     @Column(name = "active")
     private Boolean active;

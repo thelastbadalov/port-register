@@ -25,7 +25,7 @@ public class GenericResponse<R> {
     private R data;
     private List<ValidationError> errors = new ArrayList<>();
 
-    public static <R> az.ailab.dto.GenericResponse<R> success(R data, String key) {
+    public static <R> GenericResponse<R> success(R data, String key) {
         return new GenericResponseBuilder<R>()
                 .status(HttpStatus.OK.value())
                 .key(key)
@@ -33,7 +33,7 @@ public class GenericResponse<R> {
                 .build();
     }
 
-    public static <R> az.ailab.dto.GenericResponse<R> success(az.ailab.dto.GenericResponse<?> data) {
+    public static <R> GenericResponse<R> success(GenericResponse<?> data) {
         return new GenericResponseBuilder<R>()
                 .status(HttpStatus.OK.value())
                 .key("SUCCESS")
@@ -41,14 +41,14 @@ public class GenericResponse<R> {
                 .build();
     }
 
-    public static az.ailab.dto.GenericResponse<Void> success(String key) {
+    public static GenericResponse<Void> success(String key) {
         return new GenericResponseBuilder<Void>()
                 .status(HttpStatus.OK.value())
                 .key(key)
                 .build();
     }
 
-    public static az.ailab.dto.GenericResponse<Void> failure(int httpStatusCode, String key, String message) {
+    public static GenericResponse<Void> failure(int httpStatusCode, String key, String message) {
         return new GenericResponseBuilder<Void>()
                 .timestamp(OffsetDateTime.now())
                 .status(httpStatusCode)
@@ -57,7 +57,7 @@ public class GenericResponse<R> {
                 .build();
     }
 
-    public static <R> az.ailab.dto.GenericResponse<R> failure(int httpStatusCode, String key, R data) {
+    public static <R> GenericResponse<R> failure(int httpStatusCode, String key, R data) {
         return new GenericResponseBuilder<R>()
                 .timestamp(OffsetDateTime.now())
                 .status(httpStatusCode)
@@ -66,7 +66,7 @@ public class GenericResponse<R> {
                 .build();
     }
 
-    public static az.ailab.dto.GenericResponse<Void> failure(int httpStatusCode, String key) {
+    public static GenericResponse<Void> failure(int httpStatusCode, String key) {
         return new GenericResponseBuilder<Void>()
                 .timestamp(OffsetDateTime.now())
                 .status(httpStatusCode)
@@ -80,4 +80,3 @@ public class GenericResponse<R> {
     }
 
 }
-
