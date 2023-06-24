@@ -20,30 +20,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class GeneralUserController {
 
     private final GeneralUserService generalUserService;
-    private final RegisterValidator registerValidator;
-
-    @PostMapping("/register")
-    private GenericResponse<Void> registration(
-            @Valid @RequestBody GeneralUserRegistrationRequestDto generalUserRegistrationRequestDto,
-            BindingResult bindingResult
-    ) {
-        registerValidator.validate(generalUserRegistrationRequestDto, bindingResult);
-        throwIncorrectDataException(bindingResult);
-        generalUserService.register(generalUserRegistrationRequestDto);
-        return GenericResponse.success("SUCCESS");
-    }
 
     @PostMapping("/login")
     private GenericResponse<String> login(@Valid @RequestBody GeneralUserLoginRequestDto generalUserLoginRequestDto) {
         return generalUserService.login(generalUserLoginRequestDto);
     }
 
-    private void throwIncorrectDataException(BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            StringBuffer message = new StringBuffer();
-            bindingResult.getFieldErrors().stream().forEach(e -> message.append(e.getField() + ":" + e.getDefaultMessage() + ", "));
-            throw new IncorrectData(message.toString());
-        }
-    }
+
 
 }

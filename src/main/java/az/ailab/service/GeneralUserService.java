@@ -19,27 +19,18 @@ import java.time.LocalDateTime;
 public class GeneralUserService {
 
     private final GeneralUserRepository generalUserRepository;
-    private final GeneralUserMapper generalUserMapper;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
-    public void register(GeneralUserRegistrationRequestDto generalUserRegistrationRequestDto){
-        GeneralUser user = generalUserMapper.mapToEntity(generalUserRegistrationRequestDto);
-        user.setPassword(passwordEncoder.encode(generalUserRegistrationRequestDto.getPassword()));
-        user.setCreatedAt(LocalDateTime.now());
-        user.setModifiedAt(LocalDateTime.now());
-        user.setCreatedBy(null);
-        user.setModifiedBy(null);
-        user.setActive(true);
-        generalUserRepository.save(user);
-    }
 
-    public GenericResponse<String> login(GeneralUserLoginRequestDto generalUserLoginRequestDto){
-        GeneralUser user = generalUserRepository.findByEmail(generalUserLoginRequestDto.getEmail()).orElseThrow(() -> new UsernameNotFoundException("User not found"));
-        boolean isPasswordCorrect = passwordEncoder.matches(generalUserLoginRequestDto.getPassword(), user.getPassword());
-        if (!isPasswordCorrect) {
+
+
+    public GenericResponse<String> login(GeneralUserLoginRequestDto generalUserLoginRequestDto) {
+        GeneralUser user = generalUserRepository.findByEmail(generalUserLoginRequestDto.getEmail())
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        if (!passwordEncoder.matches(generalUserLoginRequestDto.getPassword(), user.getPassword())) {
             throw new WrongPasswordException("Password wrong exception");
         }
         String jwt = jwtService.generateToken(user);
-        return GenericResponse.success(jwt,"SUCCESS");
+        return GenericResponse.success(jwt, "SUCCESS");
     }
 }

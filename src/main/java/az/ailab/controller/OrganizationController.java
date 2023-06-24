@@ -1,5 +1,6 @@
 package az.ailab.controller;
 
+import az.ailab.dto.CommonRegisterRequestDto;
 import az.ailab.dto.GenericResponse;
 import az.ailab.dto.OrganizationRegisterRequestDto;
 import az.ailab.service.OrganizationService;
@@ -20,10 +21,10 @@ public class OrganizationController {
 
     @PostMapping
     public GenericResponse<Void> register(
-            @Valid @RequestBody OrganizationRegisterRequestDto organizationRegisterRequestDto,
+            @Valid @RequestBody CommonRegisterRequestDto commonRegisterRequestDto,
             HttpServletRequest servletRequest
     ) {
-        organizationService.register(organizationRegisterRequestDto, servletRequest);
-        return GenericResponse.success("SUCCESS");
+        return organizationService.register(commonRegisterRequestDto);
+
     }
 }
