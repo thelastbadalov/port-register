@@ -1,16 +1,40 @@
 package az.ailab.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
-public class OrganizationAddress {
+@Table(name = "organization_address")
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+public class OrganizationAddress extends BaseEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "address")
+    private String address;
+    @Column(name = "state")
+    private String state;
+    @Column(name = "city")
+    private String city;
+    @Column(name = "country")
+    private String country;
+    @Column(name = "postal_code")
+    private String postalCode;
     @ManyToOne
-    @JoinColumn(name = "organization_id",nullable = false)
     private Organization organization;
 
-    @OneToMany(mappedBy = "organizationAddress")
-    private List<AddressType> addressTypes;
+    @OneToOne
+    private AddressType addressType;
+
 }
