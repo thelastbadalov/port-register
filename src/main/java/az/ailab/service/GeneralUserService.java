@@ -27,7 +27,7 @@ public class GeneralUserService {
 
     public GenericResponse<String> login(GeneralUserLoginRequestDto generalUserLoginRequestDto) {
         GeneralUser user = generalUserRepository.findByEmail(generalUserLoginRequestDto.getEmail())
-                .orElseThrow(() -> new UserNotFoundException("User not found"));
+                .orElseThrow(() -> new UserNotFoundException("password or email is not correct"));
         if (!(passwordEncoder.matches(generalUserLoginRequestDto.getPassword(), user.getPassword()))) {
             throw new WrongPasswordException("password or email is not correct");
         }
