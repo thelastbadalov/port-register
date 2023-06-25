@@ -11,6 +11,7 @@ import org.mapstruct.ReportingPolicy;
         unmappedSourcePolicy = ReportingPolicy.IGNORE)
 public interface GeneralUserMapper {
     GeneralUserRegistrationRequestDto mapToDto(GeneralUser generalUser);
+
     @Mapping(target = "createdAt", expression = "java(java.time.LocalDateTime.now())")
     @Mapping(target = "modifiedAt", expression = "java(java.time.LocalDateTime.now())")
     @Mapping(target = "active", expression = "java(true)")

@@ -1,5 +1,6 @@
 package az.ailab.service;
 
+import az.ailab.constants.UserOrganizationErrorMessages;
 import az.ailab.dto.CommonRegisterRequestDto;
 import az.ailab.dto.GenericResponse;
 import az.ailab.exception.OrganizationOrUserAlreadyExists;
@@ -34,7 +35,7 @@ public class OrganizationService {
     private final AddressTypeRepository addressTypeRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public GenericResponse<Void> register(CommonRegisterRequestDto commonRegisterRequestDto){
+    public GenericResponse<Void> register(CommonRegisterRequestDto commonRegisterRequestDto) {
 
         Organization organization =
                 organizationMapper.mapToEntity(commonRegisterRequestDto.getOrganizationRegisterRequestDto());
@@ -51,9 +52,9 @@ public class OrganizationService {
         AddressType addressType =
                 organizationAddressService.createAddressType(commonRegisterRequestDto.getOrganizationAddressRegisterRequestDto());
 
-        if(organizationRepository.existsByTaxIdentificationNumber(organization.getTaxIdentificationNumber()) ||
-                generalUserRepository.existsByEmail(generalUser.getEmail())){
-            throw new OrganizationOrUserAlreadyExists("organization or user already exists");
+        if (organizationRepository.existsByTaxIdentificationNumber(organization.getTaxIdentificationNumber()) ||
+                generalUserRepository.existsByEmail(generalUser.getEmail())) {
+            throw new OrganizationOrUserAlreadyExists(UserOrganizationErrorMessages.ORGANIZATION_OR_USER_ALREADY_EXISTS);
         }
 
         organizationAddress.setOrganization(organization);

@@ -1,6 +1,9 @@
 package az.ailab.exception;
 
-public class UserNotFoundException extends NotFoundException{
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+public class UserNotFoundException extends NotFoundException {
     public UserNotFoundException(String message) {
         super(message);
     }

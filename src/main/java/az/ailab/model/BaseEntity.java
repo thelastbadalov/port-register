@@ -6,12 +6,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+
 @MappedSuperclass
 @Getter
 @Setter
 public class BaseEntity {
-    @Column(name = "active")
-    private Boolean active;
+
     @Column(name = "created_by")
     private String createdBy;
     @Column(name = "created_at")

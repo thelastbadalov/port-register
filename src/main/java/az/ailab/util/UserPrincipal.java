@@ -12,6 +12,7 @@ public class UserPrincipal extends GeneralUser implements UserDetails {
     public UserPrincipal(GeneralUser user) {
         this.user = user;
     }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;

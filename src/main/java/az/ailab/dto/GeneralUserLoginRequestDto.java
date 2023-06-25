@@ -2,14 +2,10 @@ package az.ailab.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Setter
-@Getter
+@Data
 public class GeneralUserLoginRequestDto {
-
-
 
     @NotEmpty
     @Email

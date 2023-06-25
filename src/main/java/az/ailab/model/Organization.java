@@ -35,4 +35,6 @@ public class Organization extends BaseEntity {
     @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL)
     private List<OrganizationAddress> addresses;
 
+    @Column(name = "active")
+    private Boolean active;
 }

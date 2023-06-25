@@ -6,10 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.UUID;
-
 @Entity
 @Table(name = "organization_address")
 @Setter
@@ -31,6 +27,8 @@ public class OrganizationAddress extends BaseEntity {
     private String country;
     @Column(name = "postal_code")
     private String postalCode;
+    @Column(name = "active")
+    private Boolean active;
     @ManyToOne
     private Organization organization;
 

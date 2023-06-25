@@ -28,7 +28,7 @@ public class GeneralUser extends BaseEntity {
     @Column(name = "mobile_number")
     private String mobileNumber;
 
-    @Column(name = "email",unique = true)
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "password")
@@ -37,5 +37,8 @@ public class GeneralUser extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "organization_id")
     private Organization organization;
+
+    @Column(name = "active")
+    private Boolean active;
 
 }

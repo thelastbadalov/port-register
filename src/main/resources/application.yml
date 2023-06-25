@@ -9,7 +9,11 @@ spring:
       ddl-auto: create-drop
 
 app:
-
   jwt-authentication-token-expires-minutes: 1
 
   secret-key: SGVsbG8gZnJvbSBQdWJsaWMgc2lkZSBvZiBhaWxhYiBhdXRo
+
+logging:
+  level:
+    org.hibernate.orm.jdbc.bind: trace
+

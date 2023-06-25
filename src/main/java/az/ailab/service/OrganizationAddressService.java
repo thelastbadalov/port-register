@@ -1,12 +1,7 @@
 package az.ailab.service;
 
 import az.ailab.dto.OrganizationAddressRegisterRequestDto;
-import az.ailab.mapstruct.OrganizationAddressMapper;
 import az.ailab.model.AddressType;
-import az.ailab.repository.AddressTypeRepository;
-import az.ailab.repository.GeneralUserRepository;
-import az.ailab.repository.OrganizationAddressRepository;
-import az.ailab.repository.OrganizationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +12,8 @@ import java.time.LocalDateTime;
 public class OrganizationAddressService {
 
 
-
     public AddressType createAddressType(OrganizationAddressRegisterRequestDto
-                                                  organizationAddressRegisterRequestDto) {
+                                                 organizationAddressRegisterRequestDto) {
 
 
         String code = organizationAddressRegisterRequestDto.getAddressType().toString();
@@ -30,7 +24,6 @@ public class OrganizationAddressService {
         addressType.setName(name);
         addressType.setCreatedAt(LocalDateTime.now());
         addressType.setModifiedAt(LocalDateTime.now());
-        addressType.setActive(true);
         return addressType;
     }
 }

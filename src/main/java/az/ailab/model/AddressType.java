@@ -1,6 +1,5 @@
 package az.ailab.model;
 
-import az.ailab.enums.AddressTypeEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package az.ailab.enums;
+package az.ailab.constants;
 
 import lombok.Getter;
 
